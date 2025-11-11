@@ -11,11 +11,12 @@ import { ProductItemDetail } from './product-item-detail/product-item-detail';
 import { Header } from './layout/header/header';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [App, Cart, Confirmation, ProductList, ProductItem, ProductItemDetail, Header],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
-  providers: [provideBrowserGlobalErrorListeners()],
+  providers: [provideBrowserGlobalErrorListeners(), provideHttpClient()],
   bootstrap: [App],
 })
 export class AppModule {}

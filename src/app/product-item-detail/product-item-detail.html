@@ -1,4 +1,5 @@
 <div class="detail-container">
+  @if(selectedProduct) {
   <img src="{{ selectedProduct.url }}" class="product-image" />
   <div class="detail-item">
     <h2>{{ selectedProduct.name }}</h2>
@@ -27,4 +28,5 @@
       <a routerLink="/" class="backlink">↩ Back to Product List</a>
     </p>
   </div>
+  }
 </div>

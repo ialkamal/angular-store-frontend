@@ -1,7 +1,7 @@
 import { Component, Input, signal, inject, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import ProductM from '../models/productM';
-import { Product } from '../product';
+import { Product } from '../services/product';
 import { CartService } from '../services/cart-service';
 
 @Component({
@@ -14,13 +14,16 @@ export class ProductItemDetail {
   @ViewChild('qtySelector') qtySelector!: ElementRef<HTMLSelectElement>;
   productId = signal('');
   private activatedRoute = inject(ActivatedRoute);
-  selectedProduct!: ProductM;
+  selectedProduct?: ProductM;
   selectedQty: number = 1;
 
   ngOnInit() {
-    [this.selectedProduct] = this.products
-      .getProducts()
-      .filter((p) => p.id == parseInt(this.productId()));
+    this.products.getProducts().subscribe((products) => {
+      const foundProduct = products.find((p) => p.id == parseInt(this.productId()));
+      if (foundProduct) {
+        this.selectedProduct = foundProduct;
+      }
+    });
   }
 
   constructor(private products: Product, private cartService: CartService) {

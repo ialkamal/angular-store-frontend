@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from '../product';
+import { Product } from '../services/product';
 import ProductM from '../models/productM';
 
 @Component({
@@ -13,6 +13,8 @@ export class ProductList {
   productList: ProductM[] = [];
 
   ngOnInit() {
-    this.productList = this.products.getProducts();
+    this.products.getProducts().subscribe((products) => {
+      this.productList = products;
+    });
   }
 }
