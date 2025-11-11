@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductItemDetail } from './product-item-detail';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ProductItemDetail', () => {
   let component: ProductItemDetail;
@@ -11,6 +12,7 @@ describe('ProductItemDetail', () => {
     await TestBed.configureTestingModule({
       declarations: [ProductItemDetail],
       providers: [
+        provideHttpClient(),
         {
           provide: ActivatedRoute,
           useValue: {
